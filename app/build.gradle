@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     def globalConfig = rootProject.extensions.getByName("ext")
@@ -12,6 +13,11 @@ android {
         targetSdkVersion globalConfig["androidTargetSdkVersion"]
         versionCode 1
         versionName "1.0"
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
     buildTypes {
         release {
@@ -21,16 +27,32 @@ android {
     }
 }
 
-dependencies {
-    def wearableDependencies = rootProject.ext.wearableDependencies
+kapt {
+    correctErrorTypes = true
+}
 
+dependencies {
+    def wearableImplementations = rootProject.ext.wearableImplementations
+    def wearableAnnotationProcessors = rootProject.ext.wearableAnnotationProcessors
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    wearableDependencies.each { dependency ->
-        implementation dependency.value
-    }
+    implementation wearableImplementations.kotlin
+    implementation wearableImplementations.wearable
+    implementation wearableImplementations.wearablePlayServices
+    implementation wearableImplementations.percent
+    implementation wearableImplementations.supportV4
+    implementation wearableImplementations.recyclerView
+    implementation wearableImplementations.supportWear
+    implementation wearableImplementations.androidArchJava
+    implementation wearableImplementations.androidArchExtensions
+    implementation wearableImplementations.dagger
+    implementation wearableImplementations.androidAnnotations
+    implementation wearableImplementations.daggerAndroidSupport
 
-    compileOnly wearableDependencies.wearable
+    kapt wearableAnnotationProcessors.dagger
+    kapt wearableAnnotationProcessors.daggerProcessor
+
+    compileOnly wearableImplementations.wearable
 }
 
