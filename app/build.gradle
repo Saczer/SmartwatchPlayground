@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    def globalConfig = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfig["androidTargetSdkVersion"]
+    defaultConfig {
+        applicationId "pl.olszak.michal.smartwatchplayground"
+        minSdkVersion globalConfig["androidMinSdkVersion"]
+        targetSdkVersion globalConfig["androidTargetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def wearableDependencies = rootProject.ext.wearableDependencies
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    wearableDependencies.each { dependency ->
+        implementation dependency.value
+    }
+
+    compileOnly wearableDependencies.wearable
+}
+

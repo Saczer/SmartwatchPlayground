@@ -1,0 +1,27 @@
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+ext {
+    kotlinVersion = '1.1.51'
+
+    androidMinSdkVersion = 23
+    androidTargetSdkVersion = 26
+
+    gmsServicesVersion = '11.4.2'
+    supportVersion = '26.1.0'
+    wearableVersion = '2.1.0'
+
+    wearableDependencies = [
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+            wearable: "com.google.android.support:wearable:${wearableVersion}",
+            wearablePlayServices: "com.google.android.gms:play-services-wearable:${gmsServicesVersion}",
+            percent: "com.android.support:percent:${supportVersion}",
+            supportV4: "com.android.support:support-v4:${supportVersion}",
+            recyclerView: "com.android.support:recyclerview-v7:${supportVersion}",
+            supportWear: "com.android.support:wear:${supportVersion}"
+    ]
+}
