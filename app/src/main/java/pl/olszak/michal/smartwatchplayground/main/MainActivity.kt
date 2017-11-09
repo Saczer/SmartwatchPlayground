@@ -1,6 +1,7 @@
 package pl.olszak.michal.smartwatchplayground.main
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.widget.Toast
 import dagger.android.AndroidInjection
@@ -43,7 +44,7 @@ class MainActivity : WearableLiveDataActivity() {
 
     private fun displayError(throwable: Throwable?){
         Toast.makeText(this, "Could not display greeting", Toast.LENGTH_LONG).show()
-        Timber.e(throwable?.message, throwable)
+        Timber.e(throwable)
     }
 
 }

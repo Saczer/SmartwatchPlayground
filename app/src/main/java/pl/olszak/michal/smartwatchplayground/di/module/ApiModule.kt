@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import pl.olszak.michal.smartwatchplayground.BuildConfig
 import pl.olszak.michal.smartwatchplayground.R
@@ -34,15 +35,11 @@ class ApiModule {
 
     @Provides
     @PerApplication
-    internal fun provideOkhttp(resources: Resources) : OkHttpClient {
-        val builder = OkHttpClient.Builder()
-
-        builder.connectTimeout(60L, TimeUnit.SECONDS)
-                .readTimeout(60L, TimeUnit.SECONDS)
+    internal fun provideApiInterceptor(resources: Resources) : Interceptor{
 
         val key = resources.getString(R.string.open_weather_api_key)
 
-        val interceptor = Interceptor { chain ->
+        return Interceptor { chain ->
             val original = chain.request()
             val url = original.url()
 
@@ -53,10 +50,19 @@ class ApiModule {
             val builder = original.newBuilder()
                     .url(newUrl)
 
-            //needs finishing
-
-            return chain.proceed(builder.build())
+            chain.proceed(builder.build())
         }
+    }
+
+    @Provides
+    @PerApplication
+    internal fun provideOkhttp(interceptor: Interceptor) : OkHttpClient {
+        val builder = OkHttpClient.Builder()
+
+        builder.connectTimeout(60L, TimeUnit.SECONDS)
+                .readTimeout(60L, TimeUnit.SECONDS)
+                .addInterceptor(interceptor)
+
 
         if(BuildConfig.DEBUG){
             val logging = HttpLoggingInterceptor()

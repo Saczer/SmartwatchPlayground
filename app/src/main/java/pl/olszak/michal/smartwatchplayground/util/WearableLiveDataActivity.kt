@@ -10,7 +10,12 @@ import android.support.wearable.activity.WearableActivity
  * @author molszak
  *         created on 09.11.2017.
  */
-open class WearableLiveDataActivity : WearableActivity(), LifecycleOwner {
+//TODO w tym kontekście lifecycle nic nie daje, livedata i tak jest injectowany w activity na onCreate
+//oryginalnie jest zrobione za pomocą fragmentu trzymającego referencję do lifecyclestore
+//lifecycle store znowu przechowuje wszystkie obiekty ViewModel w mapie, ciekawe czy jest to w ogóle
+//czyszczone z pamięci.
+//Wearable nie ma wsparcia dla Lifecycle ?
+abstract class WearableLiveDataActivity : WearableActivity(), LifecycleOwner {
 
     private val registry : LifecycleRegistry = LifecycleRegistry(this)
 
