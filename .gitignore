@@ -161,3 +161,6 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/android,androidstudio
+
+#### personal ####
+app/src/main/res/values/keys.xml

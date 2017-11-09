@@ -2,6 +2,9 @@ package pl.olszak.michal.smartwatchplayground.di.module
 
 import android.app.Application
 import android.content.Context
+import android.content.res.Resources
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import pl.olszak.michal.smartwatchplayground.di.scope.PerApplication
@@ -27,5 +30,14 @@ class ApplicationModule {
     internal fun providePlaygroundSchedulers(schedulers: PlaygroundSchedulersFacade) : PlaygroundSchedulers{
         return schedulers
     }
+
+
+    @Provides
+    @PerApplication
+    internal fun  provideResources(context: Context) : Resources{
+        return context.resources
+    }
+
+
 
 }

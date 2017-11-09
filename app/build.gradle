@@ -52,6 +52,17 @@ dependencies {
     implementation wearableImplementations.rxJava
     implementation wearableImplementations.rxAndroid
 
+    // Okhttp and Retrofit
+    implementation wearableImplementations.retrofit
+    implementation wearableImplementations.moshi
+    implementation wearableImplementations.moshiKotlin
+    implementation wearableImplementations.retrofitRxAdapter
+    implementation wearableImplementations.moshiConverter
+    implementation wearableImplementations.okhttp
+    implementation wearableImplementations.okhttpLoggingInterceptor
+
+    implementation wearableImplementations.timber
+
     kapt wearableAnnotationProcessors.dagger
     kapt wearableAnnotationProcessors.daggerProcessor
 

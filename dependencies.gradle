@@ -20,7 +20,9 @@ ext {
     timberVersion = '4.6.0'
     rxJavaVersion = '2.1.6'
     rxAndroidVersion = '2.0.1'
-
+    retrofitVersion = '2.3.0'
+    okhttpVersion = '3.9.0'
+    moshiVersion = '1.5.0'
 
     wearableImplementations = [
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
@@ -37,7 +39,14 @@ ext {
             androidAnnotations: "com.android.support:support-annotations:${supportVersion}",
             daggerAndroidSupport: "com.google.dagger:dagger-android-support:${daggerVersion}",
             rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitRxAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            okhttp: "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}",
+            moshi: "com.squareup.moshi:moshi:${moshiVersion}",
+            moshiKotlin: "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
+            moshiConverter: "com.squareup.retrofit2:converter-moshi:${retrofitVersion}"
     ]
 
     wearableAnnotationProcessors = [

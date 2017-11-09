@@ -6,6 +6,7 @@ import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import pl.olszak.michal.smartwatchplayground.SmartwatchPlayground
 import pl.olszak.michal.smartwatchplayground.di.module.ActivityBindingModule
+import pl.olszak.michal.smartwatchplayground.di.module.ApiModule
 import pl.olszak.michal.smartwatchplayground.di.module.ApplicationModule
 import pl.olszak.michal.smartwatchplayground.di.scope.PerApplication
 
@@ -18,6 +19,7 @@ import pl.olszak.michal.smartwatchplayground.di.scope.PerApplication
         modules = arrayOf(
                 ActivityBindingModule::class,
                 ApplicationModule::class,
+                ApiModule::class,
                 AndroidSupportInjectionModule::class
         )
 )

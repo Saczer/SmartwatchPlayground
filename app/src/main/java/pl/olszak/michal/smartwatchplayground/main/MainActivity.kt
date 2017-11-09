@@ -2,7 +2,6 @@ package pl.olszak.michal.smartwatchplayground.main
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
@@ -10,6 +9,7 @@ import pl.olszak.michal.smartwatchplayground.R
 import pl.olszak.michal.smartwatchplayground.model.viewmodel.Response
 import pl.olszak.michal.smartwatchplayground.model.viewmodel.Status
 import pl.olszak.michal.smartwatchplayground.util.WearableLiveDataActivity
+import timber.log.Timber
 import javax.inject.Inject
 
 class MainActivity : WearableLiveDataActivity() {
@@ -43,10 +43,7 @@ class MainActivity : WearableLiveDataActivity() {
 
     private fun displayError(throwable: Throwable?){
         Toast.makeText(this, "Could not display greeting", Toast.LENGTH_LONG).show()
-        Log.e(TAG, throwable?.message, throwable)
+        Timber.e(throwable?.message, throwable)
     }
 
-    companion object {
-        val TAG : String = MainActivity::class.java.simpleName
-    }
 }

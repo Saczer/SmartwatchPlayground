@@ -12,16 +12,16 @@ import javax.inject.Inject
  *         created on 09.11.2017.
  */
 class MainActivityViewModel @Inject constructor(
-        private val greetingUseCase: GreetingUseCase): ViewModel() {
+        private val greetingUseCase: GreetingUseCase) : ViewModel() {
 
-    internal val greeting :MutableLiveData<Response<String>> = MutableLiveData()
+    internal val greeting: MutableLiveData<Response<String>> = MutableLiveData()
 
     override fun onCleared() {
         greetingUseCase.dispose()
     }
 
-    internal fun loadGreeting(){
-        greetingUseCase.execute(singleObserver = object : DisposableSingleObserver<String>(){
+    internal fun loadGreeting() {
+        greetingUseCase.execute(singleObserver = object : DisposableSingleObserver<String>() {
             override fun onSuccess(string: String) {
                 greeting.value = Response.success(string)
             }
