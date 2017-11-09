@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.reactivex.observers.DisposableSingleObserver
 import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.GreetingUseCase
+import pl.olszak.michal.smartwatchplayground.model.viewmodel.Response
 import javax.inject.Inject
 
 /**
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
         private val greetingUseCase: GreetingUseCase): ViewModel() {
 
-    internal val greeting :MutableLiveData<String> = MutableLiveData()
+    internal val greeting :MutableLiveData<Response<String>> = MutableLiveData()
 
     override fun onCleared() {
         greetingUseCase.dispose()
@@ -22,10 +23,11 @@ class MainActivityViewModel @Inject constructor(
     internal fun loadGreeting(){
         greetingUseCase.execute(singleObserver = object : DisposableSingleObserver<String>(){
             override fun onSuccess(string: String) {
-                greeting.value = string
+                greeting.value = Response.success(string)
             }
 
             override fun onError(throwable: Throwable) {
+                greeting.value = Response.error(throwable)
             }
 
         })
