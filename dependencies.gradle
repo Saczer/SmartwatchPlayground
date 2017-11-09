@@ -18,6 +18,8 @@ ext {
     lifecycleExtensions = '1.0.0'
     daggerVersion = '2.13'
     timberVersion = '4.6.0'
+    rxJavaVersion = '2.1.6'
+    rxAndroidVersion = '2.0.1'
 
 
     wearableImplementations = [
@@ -33,7 +35,9 @@ ext {
             androidArchExtensions: "android.arch.lifecycle:extensions:${lifecycleExtensions}",
             dagger: "com.google.dagger:dagger:${daggerVersion}",
             androidAnnotations: "com.android.support:support-annotations:${supportVersion}",
-            daggerAndroidSupport: "com.google.dagger:dagger-android-support:${daggerVersion}"
+            daggerAndroidSupport: "com.google.dagger:dagger-android-support:${daggerVersion}",
+            rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
     ]
 
     wearableAnnotationProcessors = [

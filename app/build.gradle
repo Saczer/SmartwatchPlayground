@@ -49,6 +49,8 @@ dependencies {
     implementation wearableImplementations.dagger
     implementation wearableImplementations.androidAnnotations
     implementation wearableImplementations.daggerAndroidSupport
+    implementation wearableImplementations.rxJava
+    implementation wearableImplementations.rxAndroid
 
     kapt wearableAnnotationProcessors.dagger
     kapt wearableAnnotationProcessors.daggerProcessor

@@ -5,6 +5,8 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import pl.olszak.michal.smartwatchplayground.di.scope.PerApplication
+import pl.olszak.michal.smartwatchplayground.rx.PlaygroundSchedulers
+import pl.olszak.michal.smartwatchplayground.rx.PlaygroundSchedulersFacade
 
 /**
  * @author molszak
@@ -18,6 +20,12 @@ class ApplicationModule {
     @PerApplication
     internal fun provideContext(application: Application): Context{
         return application
+    }
+
+    @Provides
+    @PerApplication
+    internal fun providePlaygroundSchedulers(schedulers: PlaygroundSchedulersFacade) : PlaygroundSchedulers{
+        return schedulers
     }
 
 }
