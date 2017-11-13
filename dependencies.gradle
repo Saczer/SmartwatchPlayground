@@ -29,6 +29,7 @@ ext {
             timber: "com.jakewharton.timber:timber:${timberVersion}",
             wearable: "com.google.android.support:wearable:${wearableVersion}",
             wearablePlayServices: "com.google.android.gms:play-services-wearable:${gmsServicesVersion}",
+            locationPlayServices: "com.google.android.gms:play-services-location:${gmsServicesVersion}",
             percent: "com.android.support:percent:${supportVersion}",
             supportV4: "com.android.support:support-v4:${supportVersion}",
             recyclerView: "com.android.support:recyclerview-v7:${supportVersion}",

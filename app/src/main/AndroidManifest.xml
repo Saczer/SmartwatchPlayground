@@ -3,7 +3,9 @@
     package="pl.olszak.michal.smartwatchplayground">
 
     <uses-feature android:name="android.hardware.type.watch" />
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".SmartwatchPlayground"
@@ -32,6 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".service.PlaygroundLocationService" android:exported="false"/>
     </application>
 
 </manifest>

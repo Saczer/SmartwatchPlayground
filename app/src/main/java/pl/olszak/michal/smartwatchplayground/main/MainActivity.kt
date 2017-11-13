@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.widget.Toast
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.olszak.michal.smartwatchplayground.R

@@ -40,6 +40,7 @@ dependencies {
     implementation wearableImplementations.kotlin
     implementation wearableImplementations.wearable
     implementation wearableImplementations.wearablePlayServices
+    implementation wearableImplementations.locationPlayServices
     implementation wearableImplementations.percent
     implementation wearableImplementations.supportV4
     implementation wearableImplementations.recyclerView

@@ -8,4 +8,7 @@
 
     <!--You need api key to log in retrieved from https://openweathermap.org/appid-->
     <string name="base_url" translatable="false">api.openweathermap.org/data/2.5</string>
+
+    <string name="pref_latitude_key" translatable="false">preferences-latitude-key</string>
+    <string name="pref_longitude_key" translatable="false">preferences-longitude-key</string>
 </resources>
