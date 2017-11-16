@@ -14,8 +14,6 @@ class GreetingUseCase @Inject constructor(
         private val repository: GreetingRepository,
         schedulers: PlaygroundSchedulers) : SingleUseCase<String, Void?>(schedulers) {
 
-    override fun buildUseCaseObservable(params: Void?): Single<String> {
-        return repository.getGreeting()
-    }
+    override fun buildUseCaseObservable(params: Void?): Single<String> = repository.getGreeting()
 
 }

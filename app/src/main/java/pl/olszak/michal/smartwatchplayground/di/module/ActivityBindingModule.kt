@@ -14,7 +14,7 @@ abstract class ActivityBindingModule {
 
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
-    abstract fun bindMianActivity(): MainActivity
+    abstract fun bindMainActivity(): MainActivity
 
 
 }

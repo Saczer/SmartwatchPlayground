@@ -3,8 +3,7 @@ package pl.olszak.michal.smartwatchplayground.di.module
 import android.app.Application
 import android.content.Context
 import android.content.res.Resources
-import com.squareup.moshi.KotlinJsonAdapterFactory
-import com.squareup.moshi.Moshi
+import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import pl.olszak.michal.smartwatchplayground.di.scope.PerApplication
@@ -21,23 +20,22 @@ class ApplicationModule {
 
     @Provides
     @PerApplication
-    internal fun provideContext(application: Application): Context{
-        return application
-    }
+    internal fun provideContext(application: Application): Context = application
 
     @Provides
     @PerApplication
-    internal fun providePlaygroundSchedulers(schedulers: PlaygroundSchedulersFacade) : PlaygroundSchedulers{
-        return schedulers
-    }
+    internal fun providePlaygroundSchedulers(schedulers: PlaygroundSchedulersFacade): PlaygroundSchedulers =
+            schedulers
+
+    @Provides
+    @PerApplication
+    internal fun provideSharedPreferences(context: Context) =
+            PreferenceManager.getDefaultSharedPreferences(context)
 
 
     @Provides
     @PerApplication
-    internal fun  provideResources(context: Context) : Resources{
-        return context.resources
-    }
-
+    internal fun provideResources(context: Context): Resources = context.resources
 
 
 }

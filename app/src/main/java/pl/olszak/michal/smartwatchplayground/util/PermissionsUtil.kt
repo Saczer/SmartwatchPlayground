@@ -13,11 +13,11 @@ import android.support.v4.content.ContextCompat
  */
 object PermissionsUtil {
 
-    val LOCATION_REQUEST_CODE = 2089
+    private val LOCATION_REQUEST_CODE = 2089
 
     private val LOCATION_PERMISSION = Manifest.permission.ACCESS_COARSE_LOCATION
 
-    fun checkLocationPermission(context: Context): Boolean {
+    fun isLocationPermissionGranted(context: Context): Boolean {
         return ContextCompat.checkSelfPermission(context, LOCATION_PERMISSION) ==
                 PackageManager.PERMISSION_GRANTED
     }
@@ -27,6 +27,17 @@ object PermissionsUtil {
                 activity,
                 arrayOf(LOCATION_PERMISSION),
                 LOCATION_REQUEST_CODE)
+    }
+
+    fun locationPermissionResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) : Boolean{
+        if (requestCode == LOCATION_REQUEST_CODE){
+            permissions.indices
+                    .first { permissions[it] == LOCATION_PERMISSION }
+                    .let{
+                        return grantResults[it] == PackageManager.PERMISSION_GRANTED
+                    }
+        }
+        return false
     }
 
 
