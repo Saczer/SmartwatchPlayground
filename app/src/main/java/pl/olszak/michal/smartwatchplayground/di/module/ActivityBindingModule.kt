@@ -2,6 +2,7 @@ package pl.olszak.michal.smartwatchplayground.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import pl.olszak.michal.smartwatchplayground.di.module.activity.MainActivityModule
 import pl.olszak.michal.smartwatchplayground.main.MainActivity
 import pl.olszak.michal.smartwatchplayground.di.scope.PerActivity
 

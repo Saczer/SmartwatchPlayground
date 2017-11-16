@@ -8,6 +8,7 @@ import pl.olszak.michal.smartwatchplayground.SmartwatchPlayground
 import pl.olszak.michal.smartwatchplayground.di.module.ActivityBindingModule
 import pl.olszak.michal.smartwatchplayground.di.module.ApiModule
 import pl.olszak.michal.smartwatchplayground.di.module.ApplicationModule
+import pl.olszak.michal.smartwatchplayground.di.module.ServiceBindingModule
 import pl.olszak.michal.smartwatchplayground.di.scope.PerApplication
 
 /**
@@ -18,6 +19,7 @@ import pl.olszak.michal.smartwatchplayground.di.scope.PerApplication
 @Component(
         modules = arrayOf(
                 ActivityBindingModule::class,
+                ServiceBindingModule::class,
                 ApplicationModule::class,
                 ApiModule::class,
                 AndroidSupportInjectionModule::class
