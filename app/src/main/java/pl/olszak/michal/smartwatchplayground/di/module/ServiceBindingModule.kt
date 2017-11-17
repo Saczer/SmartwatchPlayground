@@ -2,6 +2,7 @@ package pl.olszak.michal.smartwatchplayground.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import pl.olszak.michal.smartwatchplayground.di.module.service.PlaygroundLocationModule
 import pl.olszak.michal.smartwatchplayground.di.scope.PerService
 import pl.olszak.michal.smartwatchplayground.service.PlaygroundLocationService
 
@@ -13,7 +14,7 @@ import pl.olszak.michal.smartwatchplayground.service.PlaygroundLocationService
 abstract class ServiceBindingModule {
 
     @PerService
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = arrayOf(PlaygroundLocationModule::class))
     abstract fun bindPlaygroundLocationService() : PlaygroundLocationService
 
 

@@ -10,7 +10,7 @@ import pl.olszak.michal.smartwatchplayground.service.PlaygroundLocationService
  *         created on 17.11.2017.
  */
 @Module
-class PlaygroundLocationServiceModule {
+class PlaygroundLocationModule {
 
     @Provides
     @PerService

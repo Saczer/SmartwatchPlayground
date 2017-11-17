@@ -11,7 +11,6 @@ import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.GreetingUse
 import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.LocationUseCase
 import pl.olszak.michal.smartwatchplayground.main.MainActivity
 import pl.olszak.michal.smartwatchplayground.main.MainActivityViewModel
-import pl.olszak.michal.smartwatchplayground.util.PlaygroundPreferences
 
 /**
  * @author molszak
@@ -22,28 +21,23 @@ class MainActivityModule {
 
     @Provides
     @PerActivity
-    internal fun provideMainActivity(mainActivity: MainActivity): MainActivity {
-        return mainActivity
-    }
+    internal fun provideMainActivity(mainActivity: MainActivity): MainActivity = mainActivity
 
     @Provides
     @PerActivity
-    internal fun provideRepository(greetingRepository: SimpleGreetingRepository): GreetingRepository {
-        return greetingRepository
-    }
+    internal fun provideRepository(greetingRepository: SimpleGreetingRepository): GreetingRepository =
+            greetingRepository
 
     @Provides
     @PerActivity
-    internal fun provideLocationRepository(locationRepository: LocalLocationRepository) : LocationRepository {
-        return locationRepository
-    }
+    internal fun provideLocationRepository(locationRepository: LocalLocationRepository) : LocationRepository =
+            locationRepository
 
     @Provides
     @PerActivity
     internal fun provideViewModel(greetingUseCase: GreetingUseCase,
-                                  locationUseCase: LocationUseCase): MainActivityViewModel {
-        return MainActivityViewModel(greetingUseCase, locationUseCase)
-    }
+                                  locationUseCase: LocationUseCase): MainActivityViewModel =
+            MainActivityViewModel(greetingUseCase, locationUseCase)
 
 
 }
