@@ -10,7 +10,7 @@ import javax.inject.Inject
  * @author molszak
  *         created on 09.11.2017.
  */
-class GreetingUseCase @Inject constructor(
+class GetGreeting @Inject constructor(
         private val repository: GreetingRepository,
         schedulers: PlaygroundSchedulers) : SingleUseCase<String, Void?>(schedulers) {
 

@@ -3,7 +3,7 @@ package pl.olszak.michal.smartwatchplayground.domain.interactor
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
+import io.reactivex.observers.DisposableObserver
 import pl.olszak.michal.smartwatchplayground.rx.PlaygroundSchedulers
 
 /**
@@ -17,12 +17,12 @@ abstract class ObservableUseCase<T, in Params> constructor(
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
-    open fun execute(consumer: Consumer<T>, params : Params? = null) {
+    open fun execute(observer: DisposableObserver<T>, params : Params? = null) {
         val observable = buildUseCaseObservable(params)
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
 
-        addDisposable(observable.subscribe(consumer))
+        addDisposable(observable.subscribeWith(observer))
     }
 
     fun dispose(){

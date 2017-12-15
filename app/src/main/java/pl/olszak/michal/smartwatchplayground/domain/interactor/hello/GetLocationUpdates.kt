@@ -11,7 +11,7 @@ import javax.inject.Inject
  * @author molszak
  *         created on 16.11.2017.
  */
-class LocationUseCase @Inject constructor(
+class GetLocationUpdates @Inject constructor(
         private val repository: LocationRepository,
         schedulers: PlaygroundSchedulers) : ObservableUseCase<Location, Void?>(schedulers) {
 

@@ -7,10 +7,10 @@ import pl.olszak.michal.smartwatchplayground.data.LocationRepository
 import pl.olszak.michal.smartwatchplayground.data.hello.GreetingRepository
 import pl.olszak.michal.smartwatchplayground.data.hello.SimpleGreetingRepository
 import pl.olszak.michal.smartwatchplayground.di.scope.PerActivity
-import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.GreetingUseCase
-import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.LocationUseCase
-import pl.olszak.michal.smartwatchplayground.main.MainActivity
-import pl.olszak.michal.smartwatchplayground.main.MainActivityViewModel
+import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.GetGreeting
+import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.GetLocationUpdates
+import pl.olszak.michal.smartwatchplayground.welcome.WelcomeActivity
+import pl.olszak.michal.smartwatchplayground.welcome.presentation.WelcomeViewModel
 
 /**
  * @author molszak
@@ -21,7 +21,7 @@ class MainActivityModule {
 
     @Provides
     @PerActivity
-    internal fun provideMainActivity(mainActivity: MainActivity): MainActivity = mainActivity
+    internal fun provideMainActivity(welcomeActivity: WelcomeActivity): WelcomeActivity = welcomeActivity
 
     @Provides
     @PerActivity
@@ -35,9 +35,9 @@ class MainActivityModule {
 
     @Provides
     @PerActivity
-    internal fun provideViewModel(greetingUseCase: GreetingUseCase,
-                                  locationUseCase: LocationUseCase): MainActivityViewModel =
-            MainActivityViewModel(greetingUseCase, locationUseCase)
+    internal fun provideViewModel(greetingUseCase: GetGreeting,
+                                  locationUseCase: GetLocationUpdates): WelcomeViewModel =
+            WelcomeViewModel(greetingUseCase, locationUseCase)
 
 
 }

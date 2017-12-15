@@ -1,7 +1,10 @@
 package pl.olszak.michal.smartwatchplayground.data
 
 import android.content.SharedPreferences
+import io.reactivex.FlowableOnSubscribe
 import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.ObservableOnSubscribe
 import io.reactivex.subjects.PublishSubject
 import pl.olszak.michal.smartwatchplayground.model.common.Location
 import pl.olszak.michal.smartwatchplayground.util.PlaygroundPreferences
@@ -12,20 +15,27 @@ import javax.inject.Inject
  *         created on 16.11.2017.
  */
 class LocalLocationRepository @Inject constructor(
-        private val preferences: PlaygroundPreferences) : LocationRepository, SharedPreferences.OnSharedPreferenceChangeListener {
+        private val preferences: PlaygroundPreferences) : LocationRepository {
 
-    private val subject: PublishSubject<Location> = PublishSubject.create()
+    private val observable : Observable<Location>
 
     init {
-        preferences.registerOnSharedPreferencesChangeListener(this)
+        observable = Observable.create({ emitter ->
+            val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+                when(key){
+                    PlaygroundPreferences.LONGITUDE_KEY,
+                    PlaygroundPreferences.LATITUDE_KEY -> emitter.onNext(preferences.getLocation())
+                }
+            }
+
+            emitter.setCancellable({
+                preferences.uregisterOnSharedPreferencesChangeListener(listener)
+            })
+
+            preferences.registerOnSharedPreferencesChangeListener(listener)
+        })
     }
 
-    override fun getLocationStream(): Observable<Location> = subject
+    override fun getLocationStream(): Observable<Location> = observable
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-        when(key){
-            PlaygroundPreferences.LONGITUDE_KEY,
-            PlaygroundPreferences.LATITUDE_KEY -> subject.onNext(preferences.getLocation())
-        }
-    }
 }
