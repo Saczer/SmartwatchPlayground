@@ -32,6 +32,11 @@ class WelcomeActivity : WearableActivity(){
         setAmbientEnabled()
     }
 
+    override fun onStop() {
+        super.onStop()
+        viewModel.dispose()
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if(PermissionsUtil.locationPermissionResult(requestCode, permissions, grantResults)){
             startLocationService()
