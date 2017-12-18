@@ -20,8 +20,9 @@ class WelcomeActivity : WearableActivity(){
         setContentView(R.layout.activity_welcome)
 
         viewModel.display = welcome_view
-        viewModel.loadGreeting()
-        viewModel.startLocationUpdates()
+        if (savedInstanceState == null){
+            viewModel.loadCurrentWeather()
+        }
 
         if(PermissionsUtil.isLocationPermissionGranted(this)){
             startLocationService()

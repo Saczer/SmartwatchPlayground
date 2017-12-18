@@ -1,4 +1,4 @@
-package pl.olszak.michal.smartwatchplayground.data
+package pl.olszak.michal.smartwatchplayground.data.location
 
 import io.reactivex.Observable
 import pl.olszak.michal.smartwatchplayground.model.common.Location

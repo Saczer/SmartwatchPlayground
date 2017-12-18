@@ -7,6 +7,7 @@
     <string name="hello_world">Hello Square World!</string>
 
     <!--You need api key to log in retrieved from https://openweathermap.org/appid-->
-    <string name="base_url" translatable="false">api.openweathermap.org/data/2.5</string>
+    <string name="base_url" translatable="false">http://api.openweathermap.org/data/2.5/</string>
+    <string name="title_activity_second">Second</string>
 
 </resources>

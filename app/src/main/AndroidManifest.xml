@@ -4,8 +4,9 @@
 
     <uses-feature android:name="android.hardware.type.watch" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".SmartwatchPlayground"
@@ -17,10 +18,7 @@
         <uses-library
             android:name="com.google.android.wearable"
             android:required="true" />
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
+
         <meta-data
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
@@ -34,8 +32,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="android.support.wearable.activity.ConfirmationActivity" />
 
-        <service android:name=".service.PlaygroundLocationService" android:exported="false"/>
+        <service
+            android:name=".service.PlaygroundLocationService"
+            android:exported="false" />
+
+        <activity
+            android:name=".second.SecondActivity"
+            android:label="@string/title_activity_second">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

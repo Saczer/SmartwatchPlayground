@@ -3,6 +3,7 @@ package pl.olszak.michal.smartwatchplayground
 import android.app.Activity
 import android.app.Application
 import android.app.Service
+import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -18,7 +19,6 @@ import javax.inject.Inject
  */
 class SmartwatchPlayground : Application(), HasActivityInjector , HasServiceInjector{
 
-
     @Inject lateinit var activityDispatchingInjector: DispatchingAndroidInjector<Activity>
     @Inject lateinit var serviceDispatchingInjector : DispatchingAndroidInjector<Service>
 
@@ -33,6 +33,11 @@ class SmartwatchPlayground : Application(), HasActivityInjector , HasServiceInje
         component.inject(this)
 
         plantTimber()
+        createAdditional()
+    }
+
+    private fun createAdditional() {
+        AndroidThreeTen.init(this)
     }
 
     private fun plantTimber(){

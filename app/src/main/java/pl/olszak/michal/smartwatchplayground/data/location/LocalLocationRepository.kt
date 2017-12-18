@@ -1,11 +1,7 @@
-package pl.olszak.michal.smartwatchplayground.data
+package pl.olszak.michal.smartwatchplayground.data.location
 
 import android.content.SharedPreferences
-import io.reactivex.FlowableOnSubscribe
 import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
-import io.reactivex.subjects.PublishSubject
 import pl.olszak.michal.smartwatchplayground.model.common.Location
 import pl.olszak.michal.smartwatchplayground.util.PlaygroundPreferences
 import javax.inject.Inject

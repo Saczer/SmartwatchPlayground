@@ -2,15 +2,16 @@ package pl.olszak.michal.smartwatchplayground.di.module.activity
 
 import dagger.Module
 import dagger.Provides
-import pl.olszak.michal.smartwatchplayground.data.LocalLocationRepository
-import pl.olszak.michal.smartwatchplayground.data.LocationRepository
-import pl.olszak.michal.smartwatchplayground.data.hello.GreetingRepository
-import pl.olszak.michal.smartwatchplayground.data.hello.SimpleGreetingRepository
+import pl.olszak.michal.smartwatchplayground.data.location.LocalLocationRepository
+import pl.olszak.michal.smartwatchplayground.data.location.LocationRepository
+import pl.olszak.michal.smartwatchplayground.data.weather.WeatherRepository
 import pl.olszak.michal.smartwatchplayground.di.scope.PerActivity
-import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.GetGreeting
-import pl.olszak.michal.smartwatchplayground.domain.interactor.hello.GetLocationUpdates
+import pl.olszak.michal.smartwatchplayground.domain.interactor.GetLocationUpdates
+import pl.olszak.michal.smartwatchplayground.domain.interactor.weather.GetCurrentWeather
+import pl.olszak.michal.smartwatchplayground.navigation.Navigator
 import pl.olszak.michal.smartwatchplayground.welcome.WelcomeActivity
 import pl.olszak.michal.smartwatchplayground.welcome.presentation.WelcomeViewModel
+import retrofit2.Retrofit
 
 /**
  * @author molszak
@@ -25,19 +26,21 @@ class MainActivityModule {
 
     @Provides
     @PerActivity
-    internal fun provideRepository(greetingRepository: SimpleGreetingRepository): GreetingRepository =
-            greetingRepository
-
-    @Provides
-    @PerActivity
-    internal fun provideLocationRepository(locationRepository: LocalLocationRepository) : LocationRepository =
+    internal fun provideLocationRepository(locationRepository: LocalLocationRepository): LocationRepository =
             locationRepository
 
     @Provides
     @PerActivity
-    internal fun provideViewModel(greetingUseCase: GetGreeting,
-                                  locationUseCase: GetLocationUpdates): WelcomeViewModel =
-            WelcomeViewModel(greetingUseCase, locationUseCase)
+    internal fun provideWeatherRepository(retrofit: Retrofit): WeatherRepository {
+        return retrofit.create(WeatherRepository::class.java)
+    }
+
+    @Provides
+    @PerActivity
+    internal fun provideViewModel(locationUseCase: GetLocationUpdates,
+                                  getCurrentWeather: GetCurrentWeather,
+                                  navigator: Navigator): WelcomeViewModel =
+            WelcomeViewModel(locationUseCase, getCurrentWeather, navigator)
 
 
 }

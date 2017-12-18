@@ -7,6 +7,8 @@ import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import pl.olszak.michal.smartwatchplayground.di.scope.PerApplication
+import pl.olszak.michal.smartwatchplayground.navigation.AndroidNavigator
+import pl.olszak.michal.smartwatchplayground.navigation.Navigator
 import pl.olszak.michal.smartwatchplayground.rx.PlaygroundSchedulers
 import pl.olszak.michal.smartwatchplayground.rx.PlaygroundSchedulersFacade
 
@@ -36,6 +38,10 @@ class ApplicationModule {
     @Provides
     @PerApplication
     internal fun provideResources(context: Context): Resources = context.resources
+
+    @Provides
+    @PerApplication
+    internal fun provideNavigator(androidNavigator: AndroidNavigator) : Navigator = androidNavigator
 
 
 }
